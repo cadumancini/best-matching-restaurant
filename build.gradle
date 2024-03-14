@@ -1,9 +1,13 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'com.carlos'
-version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
 
 repositories {
     mavenCentral()
@@ -16,4 +20,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Best Matching Restaurant',
+                'Implementation-Version': '1.0',
+                'Main-Class': 'com.assessment.BestMatchingRestaurant'
+    }
 }

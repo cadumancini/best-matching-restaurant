@@ -13,11 +13,7 @@ public class CuisineService {
         repository = new CuisineRepository();
     }
 
-    public List<Cuisine> getAllCuisines() {
-        return repository.getCuisines();
-    }
-
-    public Cuisine getCuisine(int id) {
-        return repository.getCuisineById(id);
+    public List<Cuisine> getCuisinesByStartingName(String name) {
+        return repository.getCuisinesByStartingName(name);
     }
 }

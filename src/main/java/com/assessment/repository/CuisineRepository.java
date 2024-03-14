@@ -21,11 +21,7 @@ public class CuisineRepository extends CSVReader {
         return lines.stream().map(line -> Cuisine.fromLine(line)).collect(Collectors.toList());
     }
 
-    public List<Cuisine> getCuisines() {
-        return cuisines;
-    }
-
-    public Cuisine getCuisineById(int id) {
-        return cuisines.stream().filter(cuisine -> cuisine.getId() == id).findFirst().orElse(null);
+    public List<Cuisine> getCuisinesByStartingName(String name) {
+        return cuisines.stream().filter(cuisine -> cuisine.getName().startsWith(name)).toList();
     }
 }

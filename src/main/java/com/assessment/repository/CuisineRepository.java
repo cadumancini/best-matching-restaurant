@@ -24,4 +24,8 @@ public class CuisineRepository extends CSVReader {
     public List<Cuisine> getCuisines() {
         return cuisines;
     }
+
+    public Cuisine getCuisineById(int id) {
+        return cuisines.stream().filter(cuisine -> cuisine.getId() == id).findFirst().orElse(null);
+    }
 }

@@ -16,4 +16,8 @@ public class CuisineService {
     public List<Cuisine> getAllCuisines() {
         return repository.getCuisines();
     }
+
+    public Cuisine getCuisine(int id) {
+        return repository.getCuisineById(id);
+    }
 }

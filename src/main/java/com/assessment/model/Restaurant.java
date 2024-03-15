@@ -4,25 +4,25 @@ import java.util.List;
 
 public class Restaurant {
     private final String name;
-    private final int customer_rating;
+    private final int customeRating;
     private final int distance;
     private final int price;
-    private final int cuisine_id;
+    private final int cuisineId;
 
-    public Restaurant(String name, int customer_rating, int distance, int price, int cuisine_id) {
+    public Restaurant(String name, int customeRating, int distance, int price, int cuisineId) {
         this.name = name;
-        this.customer_rating = customer_rating;
+        this.customeRating = customeRating;
         this.distance = distance;
         this.price = price;
-        this.cuisine_id = cuisine_id;
+        this.cuisineId = cuisineId;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getCustomer_rating() {
-        return customer_rating;
+    public int getCustomeRating() {
+        return customeRating;
     }
 
     public int getDistance() {
@@ -33,19 +33,15 @@ public class Restaurant {
         return price;
     }
 
-    public int getCuisine_id() {
-        return cuisine_id;
+    public int getCuisineId() {
+        return cuisineId;
     }
 
     public static Restaurant fromLine(List<String> line) {
         return new Restaurant(line.get(0),
-                Integer.valueOf(line.get(1)),
-                Integer.valueOf(line.get(2)),
-                Integer.valueOf(line.get(3)),
-                Integer.valueOf(line.get(4)));
-    }
-
-    public String toString() {
-        return "name=" + name + ", customer_rating=" + customer_rating + ", distance=" + distance + ", price=" + price + ", cuisine_id=" + cuisine_id;
+                Integer.parseInt(line.get(1)),
+                Integer.parseInt(line.get(2)),
+                Integer.parseInt(line.get(3)),
+                Integer.parseInt(line.get(4)));
     }
 }

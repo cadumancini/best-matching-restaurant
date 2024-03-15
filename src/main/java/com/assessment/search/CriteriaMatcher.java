@@ -6,12 +6,13 @@ import com.assessment.model.Restaurant;
 import java.util.List;
 
 public class CriteriaMatcher {
+    private CriteriaMatcher(){}
     public static List<Restaurant> filterRestaurantsByStartingName(String name, List<Restaurant> restaurants) {
         return restaurants.stream().filter(restaurant -> restaurant.getName().startsWith(name)).toList();
     }
 
     public static List<Restaurant> filterRestaurantsByRating(int customerRating, List<Restaurant> restaurants) {
-        return restaurants.stream().filter(restaurant -> restaurant.getCustomer_rating() >= customerRating).toList();
+        return restaurants.stream().filter(restaurant -> restaurant.getCustomeRating() >= customerRating).toList();
     }
 
     public static List<Restaurant> filterRestaurantsByDistance(int distance, List<Restaurant> restaurants) {
@@ -23,6 +24,6 @@ public class CriteriaMatcher {
     }
 
     public static List<Restaurant> filterRestaurantsByCuisine(List<Cuisine> cuisines, List<Restaurant> restaurants) {
-        return restaurants.stream().filter(restaurant -> cuisines.stream().anyMatch(cuisine -> cuisine.getId() == restaurant.getCuisine_id())).toList();
+        return restaurants.stream().filter(restaurant -> cuisines.stream().anyMatch(cuisine -> cuisine.getId() == restaurant.getCuisineId())).toList();
     }
 }

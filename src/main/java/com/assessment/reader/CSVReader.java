@@ -1,15 +1,17 @@
-package com.assessment.dataReader;
+package com.assessment.reader;
 
 import com.assessment.exceptions.CSVReaderException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class CSVReader implements RecordReader {
-    private final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
 
     @Override
     public List<List<String>> loadSourceFromPath(String path) throws CSVReaderException {
@@ -36,6 +38,6 @@ public abstract class CSVReader implements RecordReader {
 
     @Override
     public List<List<String>> getLines(List<List<String>> source) {
-        return source.stream().filter(line -> source.indexOf(line) > 0).collect(Collectors.toList()); // ignoring columns line
+        return source.stream().filter(line -> source.indexOf(line) >= 1).toList(); // ignoring columns line
     }
 }

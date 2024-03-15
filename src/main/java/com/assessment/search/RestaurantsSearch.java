@@ -21,7 +21,7 @@ public class RestaurantsSearch {
     private String cuisine;
 
     private List<Restaurant> matchingRestaurants;
-    private final int NUMBER_OF_MATCHES_WANTED = 5;
+    private static final int NUMBER_OF_MATCHES_WANTED = 5;
 
     public RestaurantsSearch() throws CSVReaderException {
         cuisineService = new CuisineService();
@@ -79,7 +79,7 @@ public class RestaurantsSearch {
     private List<Restaurant> sortMatches(List<Restaurant> matchingRestaurants) {
         List<Restaurant> sortedRestaurants = new ArrayList<>(matchingRestaurants);
         sortedRestaurants.sort(Comparator.comparing(Restaurant::getDistance)
-                .thenComparing(Restaurant::getCustomer_rating, Comparator.reverseOrder())
+                .thenComparing(Restaurant::getCustomeRating, Comparator.reverseOrder())
                 .thenComparing(Restaurant::getPrice)
                 .thenComparing(Restaurant::getName));
         return sortedRestaurants;
@@ -92,10 +92,10 @@ public class RestaurantsSearch {
     private void printRestaurant(Restaurant restaurant) {
         StringBuilder builder = new StringBuilder();
         builder.append("Name: ").append(restaurant.getName());
-        builder.append(", Customer Rating: ").append(restaurant.getCustomer_rating());
+        builder.append(", Customer Rating: ").append(restaurant.getCustomeRating());
         builder.append(", Distance: ").append(restaurant.getDistance());
         builder.append(", Price: ").append(restaurant.getPrice());
-        builder.append(", Cuisine: ").append(cuisineService.getCuisineById(restaurant.getCuisine_id()).getName());
+        builder.append(", Cuisine: ").append(cuisineService.getCuisineById(restaurant.getCuisineId()).getName());
         print(builder.toString());
     }
 

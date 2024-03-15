@@ -1,4 +1,4 @@
-package com.assessment.dataReader;
+package com.assessment.reader;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

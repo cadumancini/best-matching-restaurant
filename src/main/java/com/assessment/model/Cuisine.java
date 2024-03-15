@@ -11,7 +11,7 @@ public class Cuisine {
         this.name = name;
     }
     public static Cuisine fromLine(List<String> line) {
-        return new Cuisine(Integer.valueOf(line.get(0)), line.get(1));
+        return new Cuisine(Integer.parseInt(line.get(0)), line.get(1));
     }
 
     public int getId() {

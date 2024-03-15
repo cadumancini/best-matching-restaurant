@@ -24,4 +24,8 @@ public class CuisineRepository extends CSVReader {
     public List<Cuisine> getCuisinesByStartingName(String name) {
         return cuisines.stream().filter(cuisine -> cuisine.getName().startsWith(name)).toList();
     }
+
+    public Cuisine getCuisineById(int cuisineId) {
+        return cuisines.stream().filter(cuisine -> cuisine.getId() == cuisineId).findFirst().orElse(null);
+    }
 }

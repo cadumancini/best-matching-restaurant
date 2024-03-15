@@ -8,5 +8,6 @@ public class BestMatchingRestaurant {
         RestaurantsSearch search = new RestaurantsSearch();
         search.readParameters();
         search.calculateMatches();
+        search.displayBestMatches();
     }
 }

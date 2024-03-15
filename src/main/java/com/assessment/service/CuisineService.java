@@ -16,4 +16,8 @@ public class CuisineService {
     public List<Cuisine> getCuisinesByStartingName(String name) {
         return repository.getCuisinesByStartingName(name);
     }
+
+    public Cuisine getCuisineById(int cuisineId) {
+        return repository.getCuisineById(cuisineId);
+    }
 }

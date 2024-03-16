@@ -14,6 +14,11 @@ public class RestaurantService {
         repository = new RestaurantRepository(RESTAURANTS_CSV_FILE);
     }
 
+    // for testing
+    RestaurantService(RestaurantRepository repository) {
+        this.repository = repository;
+    }
+
     public List<Restaurant> getAllRestaurants() {
         return repository.getRestaurants();
     }

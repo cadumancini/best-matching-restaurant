@@ -14,6 +14,11 @@ public class CuisineService {
         repository = new CuisineRepository(CUISINES_CSV_FILE);
     }
 
+    // for testing
+    CuisineService(CuisineRepository repository) {
+        this.repository = repository;
+    }
+
     public List<Cuisine> getCuisinesByStartingName(String name) {
         return repository.getCuisinesByStartingName(name);
     }

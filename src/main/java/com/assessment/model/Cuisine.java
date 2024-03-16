@@ -21,8 +21,4 @@ public class Cuisine {
     public String getName() {
         return name;
     }
-
-    public String toString() {
-        return "id=" + id + ", name=" + name;
-    }
 }

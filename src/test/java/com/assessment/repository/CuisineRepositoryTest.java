@@ -41,7 +41,6 @@ class CuisineRepositoryTest {
 
         assertEquals(expectedCuisine.getId(), actualCuisine.getId());
         assertEquals(expectedCuisine.getName(), actualCuisine.getName());
-        assertEquals(expectedCuisine.toString(), actualCuisine.toString());
     }
 
     @Test

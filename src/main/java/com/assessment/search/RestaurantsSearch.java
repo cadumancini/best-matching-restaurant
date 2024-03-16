@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class RestaurantsSearch {
     private final CuisineService cuisineService;
     private final RestaurantService restaurantService;
-    private final Scanner scanner;
+    private final Scanner scanner = new Scanner(System.in);
     private String restaurantName;
     private int customerRating;
     private int distance;
@@ -26,7 +26,12 @@ public class RestaurantsSearch {
     public RestaurantsSearch() throws CSVReaderException {
         cuisineService = new CuisineService();
         restaurantService = new RestaurantService();
-        scanner = new Scanner(System.in);
+    }
+
+    // for testing
+    RestaurantsSearch(CuisineService cuisineService, RestaurantService restaurantService) {
+        this.cuisineService = cuisineService;
+        this.restaurantService = restaurantService;
     }
 
     public void readParameters() {

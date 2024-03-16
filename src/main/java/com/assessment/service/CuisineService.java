@@ -8,9 +8,10 @@ import java.util.List;
 
 public class CuisineService {
     private final CuisineRepository repository;
+    private static final String CUISINES_CSV_FILE = "csv/cuisines.csv";
 
     public CuisineService() throws CSVReaderException {
-        repository = new CuisineRepository();
+        repository = new CuisineRepository(CUISINES_CSV_FILE);
     }
 
     public List<Cuisine> getCuisinesByStartingName(String name) {

@@ -9,12 +9,13 @@ import java.util.List;
 public class RestaurantRepository extends CSVReader {
     private final List<Restaurant> restaurants;
 
-    public RestaurantRepository() throws CSVReaderException {
+    public RestaurantRepository(String source) throws CSVReaderException {
+        this.source = source;
         restaurants = readRestaurantsFromFile();
     }
 
     private List<Restaurant> readRestaurantsFromFile() throws CSVReaderException {
-        List<List<String>> allLines = loadSourceFromPath("csv/restaurants.csv");
+        List<List<String>> allLines = loadSourceFromPath(source);
         List<List<String>> lines = getLines(allLines);
 
         return lines.stream().map(Restaurant::fromLine).toList();

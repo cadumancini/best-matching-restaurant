@@ -12,6 +12,7 @@ import java.util.List;
 
 public abstract class CSVReader implements RecordReader {
     private static final String DELIMITER = ",";
+    protected String source;
 
     @Override
     public List<List<String>> loadSourceFromPath(String path) throws CSVReaderException {

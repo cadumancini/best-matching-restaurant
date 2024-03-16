@@ -8,9 +8,10 @@ import java.util.List;
 
 public class RestaurantService {
     private final RestaurantRepository repository;
+    private static final String RESTAURANTS_CSV_FILE = "csv/restaurants.csv";
 
     public RestaurantService() throws CSVReaderException {
-        repository = new RestaurantRepository();
+        repository = new RestaurantRepository(RESTAURANTS_CSV_FILE);
     }
 
     public List<Restaurant> getAllRestaurants() {

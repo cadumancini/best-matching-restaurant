@@ -7,8 +7,8 @@ import java.util.List;
 
 public class CriteriaMatcher {
     private CriteriaMatcher(){}
-    public static List<Restaurant> filterRestaurantsByStartingName(String name, List<Restaurant> restaurants) {
-        return restaurants.stream().filter(restaurant -> restaurant.getName().startsWith(name)).toList();
+    public static List<Restaurant> filterRestaurantsByName(String name, List<Restaurant> restaurants) {
+        return restaurants.stream().filter(restaurant -> restaurant.getName().contains(name)).toList();
     }
 
     public static List<Restaurant> filterRestaurantsByRating(int customerRating, List<Restaurant> restaurants) {

@@ -6,8 +6,7 @@ import com.assessment.search.RestaurantsSearch;
 public class BestMatchingRestaurant {
     public static void main(String[] args) throws CSVReaderException {
         RestaurantsSearch search = new RestaurantsSearch();
-        search.readParameters();
-        search.calculateMatches();
+        search.readParametersAndCalculateMatches();
         search.displayBestMatches();
     }
 }

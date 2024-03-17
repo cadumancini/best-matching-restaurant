@@ -1,6 +1,7 @@
 package com.assessment.search;
 
 import com.assessment.exceptions.CSVReaderException;
+import com.assessment.exceptions.UserInputException;
 import com.assessment.model.Restaurant;
 import com.assessment.service.CuisineService;
 import com.assessment.service.RestaurantService;
@@ -14,12 +15,6 @@ public class RestaurantsSearch {
     private final CuisineService cuisineService;
     private final RestaurantService restaurantService;
     private final Scanner scanner = new Scanner(System.in);
-    private String restaurantName;
-    private int customerRating;
-    private int distance;
-    private int price;
-    private String cuisine;
-
     private List<Restaurant> matchingRestaurants;
     private static final int NUMBER_OF_MATCHES_WANTED = 5;
 
@@ -28,39 +23,55 @@ public class RestaurantsSearch {
         restaurantService = new RestaurantService();
     }
 
-    // for testing
-    RestaurantsSearch(CuisineService cuisineService, RestaurantService restaurantService) {
-        this.cuisineService = cuisineService;
-        this.restaurantService = restaurantService;
+    public void readParametersAndCalculateMatches() {
+        try {
+            print("Welcome to the Best Matching Restaurants application!");
+
+            print("Restaurant name:");
+            String name = readInput();
+
+            print("Customer rating (1 - 5):");
+            int customerRating = getCustomerRating();
+
+            print("Distance (1 - 10):");
+            int distance = getDistance();
+
+            print("Price (10 - 50):");
+            int price = getPrice();
+
+            print("Cuisine:");
+            String cuisine = readInput();
+
+            calculateMatches(name, customerRating, distance, price, cuisine);
+        } catch (UserInputException ex) {
+            print("Parameter error: " + ex.getMessage());
+        }
     }
 
-    public void readParameters() {
-        print("Welcome to the Best Matching Restaurants application!");
-        print("Instructions: if you don't want the search to use some of the parameters, just leave them blank and hit Enter.");
-
-        print("Restaurant name:");
-        restaurantName = readInput();
-
-        print("Customer rating:");
-        customerRating = getIntFrom(readInput());
-
-        print("Distance:");
-        distance = getIntFrom(readInput());
-
-        print("Price:");
-        price = getIntFrom(readInput());
-
-        print("Cuisine:");
-        cuisine = readInput();
+    private int getCustomerRating() {
+        int customerRating = getIntFrom(readInput());
+        if (customerRating < 1 || customerRating > 5) throw new UserInputException("Customer rating should be from 1 to 5.");
+        return customerRating;
     }
 
-    public void calculateMatches() {
+    private int getDistance() {
+        int distance = getIntFrom(readInput());
+        if (distance < 1 || distance > 10) throw new UserInputException("Distance should be from 1 to 10.");
+        return distance;
+    }
+
+    private int getPrice() {
+        int price = getIntFrom(readInput());
+        if (price < 10 || price > 50) throw new UserInputException("Price should be from 10 to 50.");
+        return price;
+    }
+
+    private void calculateMatches(String name, int rating, int distance, int price, String cuisine) {
         matchingRestaurants = new ArrayList<>(restaurantService.getAllRestaurants());
-
-        if (!restaurantName.isEmpty()) matchingRestaurants = CriteriaMatcher.filterRestaurantsByStartingName(restaurantName, matchingRestaurants);
-        if (customerRating > 0) matchingRestaurants = CriteriaMatcher.filterRestaurantsByRating(customerRating, matchingRestaurants);
-        if (distance > 0) matchingRestaurants = CriteriaMatcher.filterRestaurantsByDistance(distance, matchingRestaurants);
-        if (price > 0) matchingRestaurants = CriteriaMatcher.filterRestaurantsByPrice(price, matchingRestaurants);
+        if (!name.isEmpty()) matchingRestaurants = CriteriaMatcher.filterRestaurantsByName(name, matchingRestaurants);
+        matchingRestaurants = CriteriaMatcher.filterRestaurantsByRating(rating, matchingRestaurants);
+        matchingRestaurants = CriteriaMatcher.filterRestaurantsByDistance(distance, matchingRestaurants);
+        matchingRestaurants = CriteriaMatcher.filterRestaurantsByPrice(price, matchingRestaurants);
         if(!cuisine.isEmpty()) matchingRestaurants = CriteriaMatcher.filterRestaurantsByCuisine(cuisineService.getCuisinesByStartingName(cuisine), matchingRestaurants);
     }
 
@@ -112,7 +123,7 @@ public class RestaurantsSearch {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            return 0;
+            throw new UserInputException("Please provide an integer value for this parameter.");
         }
     }
 }
